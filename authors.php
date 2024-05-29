@@ -1,6 +1,4 @@
 <?php require_once('config.php'); ?>
-<!-- TCSS 445 : Spring 2024 -->
-<!-- Assignment 4 Template -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
