@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authors - Appetite Assemblers</title>
-    <!-- add a reference to the external stylesheet -->
     <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
     <style>
         .authors-section {
@@ -31,11 +30,6 @@
         }
         .team-member {
             margin: 20px 0;
-        }
-        .team-member img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
         }
         .team-member h4 {
             margin: 10px 0 5px;
@@ -77,51 +71,53 @@
             </div>
         </div>
     </nav>
-    
+
     <div class="authors-section">
         <div class="authors-content">
             <h1 class="authors-title">Meet Our Authors</h1>
             <p class="authors-text">
-                Our talented team of culinary authors brings you the best recipes from around the world. Each member of our team is an expert in their field, dedicated to sharing their knowledge and passion for food.
+                Discover the culinary experts who bring you the best recipes. Our authors are passionate about food and love to share their creative culinary ideas with you.
             </p>
         </div>
     </div>
-    
+
     <div class="team-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12 text-center team-member">
-                    <img src="path/to/image1.jpg" alt="Author 1">
-                    <h4>John Doe</h4>
-                    <p>Head Chef</p>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 text-center team-member">
-                    <img src="path/to/image2.jpg" alt="Author 2">
-                    <h4>Jane Smith</h4>
-                    <p>Pastry Chef</p>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 text-center team-member">
-                    <img src="path/to/image3.jpg" alt="Author 3">
-                    <h4>Emily Johnson</h4>
-                    <p>Nutritionist</p>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 text-center team-member">
-                    <img src="path/to/image4.jpg" alt="Author 4">
-                    <h4>Michael Brown</h4>
-                    <p>Grill Master</p>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 text-center team-member">
-                    <img src="path/to/image5.jpg" alt="Author 5">
-                    <h4>Sarah Davis</h4>
-                    <p>Recipe Developer</p>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 text-center team-member">
-                    <img src="path/to/image6.jpg" alt="Author 6">
-                    <h4>David Wilson</h4>
-                    <p>Food Blogger</p>
-                </div>
+                <?php
+                // Connect to the database
+                $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+                if (!$connection) {
+                    die('Connection failed: ' . mysqli_connect_error());
+                } else {
+                    echo '<p>Connected to database successfully.</p>';
+                }
+
+                // Fetch authors from the database
+                $sql = "SELECT User_fname, User_lname, User_email, User_joindate FROM USERS";
+                if ($result = mysqli_query($connection, $sql)) {
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo '<div class="col-lg-4 col-md-6 col-sm-12 text-center team-member">';
+                            echo '<h4>' . htmlspecialchars($row['User_fname']) . ' ' . htmlspecialchars($row['User_lname']) . '</h4>';
+                            echo '<p>Email: <a href="mailto:' . htmlspecialchars($row['User_email']) . '">' . htmlspecialchars($row['User_email']) . '</a></p>';
+                            echo '<p>Joined: ' . htmlspecialchars($row['User_joindate']) . '</p>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo '<p>No authors found.</p>';
+                    }
+                    // Free result set
+                    mysqli_free_result($result);
+                } else {
+                    echo '<p>Error executing query: ' . mysqli_error($connection) . '</p>';
+                }
+
+                // Close connection
+                mysqli_close($connection);
+                ?>
             </div>
         </div>
     </div>
-</body>
+    </body>
 </html>
