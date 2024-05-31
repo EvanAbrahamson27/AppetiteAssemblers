@@ -1,3 +1,5 @@
+USE appetiteassemblersdatabase;
+
 --   Script: AppetiteAssemblersDB
 --   Phase II
 
@@ -69,11 +71,11 @@ CREATE TABLE RECIPE_INGREDIENTS(
     Ingredient_name     VARCHAR(50)     NOT NULL, 
     PRIMARY  KEY (Recipe_id, Ingredient_name), 
     FOREIGN KEY (Recipe_id) REFERENCES RECIPES(Recipe_id) 
-        ON DELETE CASCADE 
+        ON DELETE CASCADE
         ON UPDATE CASCADE, 
     FOREIGN KEY (Ingredient_name) REFERENCES INGREDIENTS(Ingredient_name) 
-        ON DELETE CASCADE 
-        ON UPDATE CASCADE 
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 --  USER_RATINGS: Stores data of ratings that users leave on recipes.
@@ -123,7 +125,7 @@ INSERT INTO INGREDIENTS (Ingredient_name, Ingredient_price, Ingredient_cat) VALU
     ('Milk', 3.19, 'Dairy'), 
     ('Italian Seasoning', 1.50, 'Seasoning'), 
     ('Parsley', 1.29, 'Vegetable'), 
-    ('Worcestershire', 1.49, 'Condiment'), 
+    ('Worcestershire Sauce', 1.49, 'Condiment'), 
     ('Quick Cooking Oats', 4.99, 'Grain'), 
     ('Ketchup', 3.99, 'Condiment'), 
     ('Black Pepper', 1.50, 'Seasoning'), 
@@ -142,7 +144,7 @@ INSERT INTO INGREDIENTS (Ingredient_name, Ingredient_price, Ingredient_cat) VALU
     ('Pasta', 1.33, 'Grain'), 
     ('Lemon', .79, 'Vegetable'), 
     ('Canned Chickpeas', .89, 'Canned Goods'), 
-    ('Bread Crumbs', 1.49, 'Grain'), 
+    ('Breadcrumbs', 1.49, 'Grain'), 
     ('Italian Parsley', 1.29, 'Vegetable'), 
     ('Unsalted Butter', 4.39, 'Dairy'), 
     ('Dried Oregano', 1.50, 'Herb'), 
@@ -154,7 +156,7 @@ INSERT INTO INGREDIENTS (Ingredient_name, Ingredient_price, Ingredient_cat) VALU
     ('Vanilla Extract', 3.69, 'Baking'), 
     ('All-Purpose Flour', 2.69, 'Baking'), 
     ('Baking Soda', 1.19, 'Baking'), 
-    ('Ground Cinammon', 4.49, 'Spice'), 
+    ('Cinnamon', 4.49, 'Spice'), 
     ('Gluten-Free Bread Mix', 8.49, 'Grain'), 
     ('Instant Yeast', .76, 'Baking'), 
     ('Apple Cider Vinegar', 3.19, 'Vinegar'), 
@@ -170,7 +172,7 @@ INSERT INTO INGREDIENTS (Ingredient_name, Ingredient_price, Ingredient_cat) VALU
     ('Garlic Powder', 1.50, 'Seasoning'), 
     ('Green Bell Pepper', .89, 'Vegetable'), 
     ('Shredded Cheese', 2.49, 'Dairy'), 
-    ('Green Onions', .99, 'Vegetable'), 
+    ('Green Onion', .99, 'Vegetable'), 
     ('Taco Seasoning', .59, 'Seasoning'), 
     ('Romaine Lettuce', 2.99, 'Vegetable'), 
     ('Iceberg Lettuce', 1.89, 'Vegetable'), 
@@ -245,8 +247,7 @@ INSERT INTO INGREDIENT_RESTRICTIONS (Ingredient_name, Restriction_id) VALUES
     ('Unsalted Cashews', 3),
     ('Oat Milk', 1),
     ('Oat Milk', 2),
-    ('Oat Milk', 3)
-    ('Oat Milk', 1),
+    ('Oat Milk', 3),
     ('Nutritional Yeast', 1),
     ('Nutritional Yeast', 2),
     ('Nutritional Yeast', 3),
@@ -310,7 +311,7 @@ INSERT INTO RECIPE_INGREDIENTS (Recipe_id, Ingredient_name) VALUES
     (1003, 'Garlic'), 
     (1003, 'Eggs'), 
     (1003, 'Ketchup'), 
-    (1003, 'Worchestershire Sauce'), 
+    (1003, 'Worcestershire Sauce'), 
     (1003, 'Quick Cooking Oats'), 
     (1003, 'Milk'), 
     (1003, 'Parsley'), 
@@ -332,7 +333,7 @@ INSERT INTO RECIPE_INGREDIENTS (Recipe_id, Ingredient_name) VALUES
     (1005, 'Cherry Tomatoes'), 
     (1005, 'Oat Milk'), 
     (1005, 'Salt'), 
-    (1005, 'Garlic')
+    (1005, 'Garlic'),
     (1006, 'Canned Chickpeas'),
     (1006, 'Breadcrumbs'),
     (1006, 'Eggs'),
@@ -343,7 +344,7 @@ INSERT INTO RECIPE_INGREDIENTS (Recipe_id, Ingredient_name) VALUES
     (1006, 'Smoked Paprika'),
     (1006, 'Black Pepper'),
     (1006, 'Salt'),
-    (1006, 'Oil'),
+    (1006, 'Olive Oil'),
     (1007, 'Unsalted Butter'),
     (1007, 'Garlic'),
     (1007, 'Salt'),
@@ -381,7 +382,6 @@ INSERT INTO RECIPE_INGREDIENTS (Recipe_id, Ingredient_name) VALUES
     (1009, 'Kosher Salt'),
     (1009, 'Black Pepper'),
     (1009, 'Bacon'),
-    (1009, 'Bacon'),
     (1009, 'Breakfast Sausage'),
     (1009, 'Onion'),
     (1009, 'Green Bell Pepper'),
@@ -403,7 +403,7 @@ INSERT INTO RECIPE_INGREDIENTS (Recipe_id, Ingredient_name) VALUES
     (1010, 'Salsa'),
     (1010, 'Red Onion'),
     (1010, 'Cilantro'),
-    (1010,'Lime'),
+    (1010, 'Lime'),
     (1010, 'Tortilla Chips'),
     (1011, 'Olive Oil'),
     (1011, 'Onion'),
