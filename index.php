@@ -7,6 +7,17 @@
         <!-- add a reference to the external stylesheet -->
         <link rel="stylesheet" href="bootstrap.min.css">
         <link rel="stylesheet" href="style.css">
+        <style>
+            .cool-image {
+                width: 300px;
+                height: auto;
+                border-radius: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s;
+                margin-left:20px;
+                margin-top:20px;
+            }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
@@ -35,10 +46,11 @@
                     <a class="nav-link" href="about.php">About</a>
                 </li>
                 </ul>
-                    <form class="d-flex">
-                    <input class="form-control me-sm-2" type="search" placeholder="Search">
+                <form class="d-flex" action="search.php" method="get">
+                    <input class="form-control me-sm-2" type="search" name="s" placeholder="Search">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                </form>
+                <button class="btn btn-dark my-2 my-sm-0" onclick="window.location.href = 'upload.php';">Upload</button>
             </div>
         </div>
     </nav>
@@ -49,6 +61,8 @@
     <p class="card-text">Ready to begin? Just check out the recipes tab or click this button.</p>
     </div>
     </div>
+    <img src="AppetiteAssemblers.jpg" alt="Cool Image" class="cool-image">
+    <br />
     <a href="recipes.php"><button type="button" class="btn btn-secondary body-margin">Recipes</button></a>
     </body>
 </html>

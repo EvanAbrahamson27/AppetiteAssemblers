@@ -9,6 +9,25 @@
         <title>Appetite Assemblers</title>
         <!-- add a reference to the external stylesheet -->
         <link rel="stylesheet" href="bootstrap.min.css">
+        <style>
+            .recipe-section {
+                padding: 60px;
+                text-align: center;
+                background-color: #f4f4f4;
+            }
+            .recipe-content {
+                max-width: 800px;
+                margin: auto;
+            }
+            .recipe-title {
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
+            .recipe-text {
+                font-size: 1.2em;
+                line-height: 1.6;
+            }
+            </style>
     </head>
     <body>
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
@@ -35,15 +54,23 @@
                     <a class="nav-link" href="about.php">About</a>
                 </li>
                 </ul>
-                    <form class="d-flex">
-                    <input class="form-control me-sm-2" type="search" placeholder="Search">
+                <form class="d-flex" action="search.php" method="get">
+                    <input class="form-control me-sm-2" type="search" name="s" placeholder="Search">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                </form>
+                <button class="btn btn-dark my-2 my-sm-0" onclick="window.location.href = 'upload.php';">Upload</button>
             </div>
         </div>
     </nav>
         <div class="jumbotron">
-            <p class="lead">What type of recipe are you looking for?<p>
+            <div class="recipe-section">
+                <div class="recipe-content">
+                    <h1 class="recipe-title">Recipes</h1>
+                    <p class="recipe-text">
+                        What type of meal are you looking for? We have a variety of options for you to pick from.
+                    </p>
+                </div>
+            </div>
             <hr class="my-4">
             <form method="GET" action="recipes.php">
                 <select name="rca" onchange='this.form.submit()'>

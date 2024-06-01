@@ -213,7 +213,8 @@ INSERT INTO INGREDIENTS (Ingredient_name, Ingredient_price, Ingredient_cat) VALU
     (104, 'Minaëlle', 'Jerta', 'hello@minaelleskitchen.ca', '2021-11-12'), 
     (105, 'Margaret', 'Pahos', 'createcookshare@gmail.com', '2015-05-15'), 
     (106, 'Jamie', 'Vespa', 'dishingouthealth@gmail.com', '2013-02-19'), 
-    (107, 'Hannah', 'Kling', 'hannah@lovelydelites.com', '2018-04-26');
+    (107, 'Hannah', 'Kling', 'hannah@lovelydelites.com', '2018-04-26'),
+	(108, 'User', 'Anonymous', 'anonymous@anonuser.com', '2024-05-31');
 
 -- Stores sample ingredient restriction data
 -- Summary: Store data about the connections between ingredients and restrictions

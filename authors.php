@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authors - Appetite Assemblers</title>
-    <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
     <style>
         .authors-section {
             padding: 60px;
@@ -64,10 +64,11 @@
                         <a class="nav-link" href="about.php">About</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-sm-2" type="search" placeholder="Search">
+                <form class="d-flex" action="search.php" method="get">
+                    <input class="form-control me-sm-2" type="search" name="s" placeholder="Search">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
+                <button class="btn btn-dark my-2 my-sm-0" onclick="window.location.href = 'upload.php';">Upload</button>
             </div>
         </div>
     </nav>

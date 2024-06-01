@@ -10,20 +10,20 @@
         <!-- add a reference to the external stylesheet -->
         <link rel="stylesheet" href="bootstrap.min.css">
         <style>
-            .ingredient-section {
+            .search-section {
                 padding: 60px;
                 text-align: center;
                 background-color: #f4f4f4;
             }
-            .ingredient-content {
+            .search-content {
                 max-width: 800px;
                 margin: auto;
             }
-            .ingredient-title {
+            .search-title {
                 font-size: 2.5em;
                 margin-bottom: 20px;
             }
-            .ingredient-text {
+            .search-text {
                 font-size: 1.2em;
                 line-height: 1.6;
             }
@@ -63,38 +63,40 @@
             </div>
         </nav>
         <div class="jumbotron">
-            <div class="ingredient-section">
-                <div class="ingredient-content">
-                    <h1 class="ingredient-title" id="recipe-title">No Recipes with this ID</h1>
-                    <h4 id="recipe-rating"></h4>
-                    <h4 id="recipe-author"></h4>
-                    <p class="ingredient-text">
-                        A great selection! A list of ingredients for this recipe are below.
+            <div class="search-section">
+                <div class="search-content">
+                    <h1 class="search-title" id="search-title">No Recipes Found with Query</h1>
+                    <p class="search-text">
+                        Here's some great options matching your search:
                     </p>
                 </div>
             </div>
             <hr class="my-4">
-            <form method="GET" action="ingredients.php">
+            <form method="GET" action="search.php">
                 <?php
                 $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
                 if ( mysqli_connect_errno() )
                 {
                     die( mysqli_connect_error() );
-                    }
-                    ?>
+                }
+                ?>
                 <?php
                 if ($_SERVER["REQUEST_METHOD"] == "GET")
                 {
-                    if (isset($_GET['id']) )
+                    if (isset($_GET['s']) )
                     {
                 ?>
                 <p>&nbsp;</p>
                 <table class="table table-hover">
                     <thead>
                         <tr class="table-success">
-                            <th scope="col">Ingredient Name</th>
-                            <th scope="col">Ingredient Price</th>
-                            <th scope="col">Ingredient Category</th>
+                            <th scope="col">Recipe Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Time to Cook (min)</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">Recipe Category</th>
+                            <th scope="col">Author's Last Name</th>
+                            <th scope="col">Upload Date</th>
                         </tr>
                     </thead>
                     <?php
@@ -102,43 +104,31 @@
                         {
                             die( mysqli_connect_error() );
                         }
-                        $sql = " SELECT *
-                            FROM RECIPE_INGREDIENTS u
-                            LEFT JOIN INGREDIENTS i ON u.Ingredient_name = i.Ingredient_name
-                            LEFT JOIN RECIPES r ON u.Recipe_id = r.Recipe_id
-                            LEFT JOIN USERS s ON r.Recipe_author = s.User_id
-                            WHERE u.Recipe_id = '{$_GET['id']}'
-                            ORDER BY i.Ingredient_cat ASC";
+                        $sql = "SELECT *
+                            FROM RECIPES
+                            LEFT JOIN USERS ON Recipe_author = User_id
+                            WHERE Recipe_name LIKE '%{$_GET['s']}%'
+                            ORDER BY recipe_name ASC";
                         if ($result = mysqli_query($connection, $sql))
                         {
                             while($row = mysqli_fetch_assoc($result))
                             {
                     ?>
                     <tr>
-                        <td><?php echo $row['Ingredient_name'] ?></td>
-                        <td><?php echo '$' . $row['Ingredient_price'] ?></td>
-                        <td><?php echo $row['Ingredient_cat'] ?></td>
+                        <td><a href="ingredients.php?id=<?php echo $row['Recipe_id']; ?>"><?php echo $row['Recipe_name']; ?></a></td>
+                        <td><?php echo '$' . $row['Recipe_price'] ?></td>
+                        <td><?php echo $row['Recipe_mintocook'] ?></td>
+                        <td><?php echo $row['Recipe_rating'] ?></td>
+                        <td><?php echo $row['Recipe_category'] ?></td>
+                        <td><a href="authors.php?id=<?php echo $row['User_id']; ?>"><?php echo $row['User_lname']; ?></a></td>
+                        <td><?php echo $row['Recipe_uploaddate'] ?></td>
                     </tr>
                     <script>
                         function updateTitle(newTitle) {
-                            var titleElement = document.getElementById("recipe-title");
+                            var titleElement = document.getElementById("search-title");
                             titleElement.innerHTML = newTitle;
                         }
-                        function updateText(newText) {
-                            var textElement = document.getElementById("recipe-rating");
-                            textElement.innerHTML = newText;
-                        }
-                        function stars() {
-                            let star = "";
-                            for (let i = 0; i < <?php echo $row['Recipe_rating']?> / 20; i++) {
-                                 star += "⭐"
-                            }
-                            return star;
-                        }
-                        updateTitle("<?php echo $row['Recipe_name'] ?>");
-                        updateText(stars());
-                        var textElement = document.getElementById("recipe-author");
-                            textElement.innerHTML = "By <?php echo $row['User_fname'] ?> <?php echo $row['User_lname'] ?>";
+                        updateTitle("<?php echo ucfirst($_GET['s']) ?>");
                     </script>
                     <?php
                             }

@@ -2,3 +2,57 @@
     margin-left:20px;
     margin-top:20px;
 }
+#vegetarian-tab {
+    color: #28a99e;
+}
+#vegetarian-tab:hover {
+    background-color: #d8d8d8;
+}
+#vegetarian-tab.active {
+    color: #fff;
+    background-color: #a6a6a6;
+}
+
+#vegan-tab {
+    color: #28a99e;
+}
+#vegan-tab:hover {
+    background-color: #d8d8d8;
+}
+#vegan-tab.active {
+    color: #fff;
+    background-color: #a6a6a6;
+}
+
+#gluten-free-tab {
+    color: #28a99e;
+}
+#gluten-free-tab:hover {
+    background-color: #d8d8d8;
+}
+#gluten-free-tab.active {
+    color: #fff;
+    background-color: #a6a6a6;
+}
+
+#low-carb-tab {
+    color: #28a99e;
+}
+#low-carb-tab:hover {
+    background-color: #d8d8d8;
+}
+#low-carb-tab.active {
+    color: #fff;
+    background-color: #a6a6a6;
+}
+
+#dairy-free-tab {
+    color: #28a99e;
+}
+#dairy-free-tab:hover {
+    background-color: #d8d8d8;
+}
+#dairy-free-tab.active {
+    color: #fff;
+    background-color: #a6a6a6;
+}
